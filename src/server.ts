@@ -1,13 +1,14 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import path from 'path';
 
 const app = express();
-const PORT = 3000;
+// Use the PORT provided by the hosting environment, or default to 3000 for local development.
+const PORT = process.env.PORT || 3000;
 
 // Serve the static files from the 'public' directory
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 
